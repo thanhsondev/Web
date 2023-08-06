@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[book] (
-    [id]           INT           IDENTITY (1, 1) NOT NULL,
+    [Id]           INT           IDENTITY (1, 1) NOT NULL,
     [title]        VARCHAR (50)  NULL,
     [info]         VARCHAR (MAX) NULL,
     [bookquantity] INT           NULL,
@@ -7,7 +7,7 @@
     [imgfile]      VARCHAR (50)  NULL,
     [cataid]       INT           NULL,
     [author]       VARCHAR (50)  NULL,
-    PRIMARY KEY CLUSTERED ([id] ASC)
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
 CREATE TABLE [dbo].[orders] (
@@ -20,9 +20,9 @@ CREATE TABLE [dbo].[orders] (
 );
 
 CREATE TABLE [dbo].[usersaccounts] (
-    [id]   INT          IDENTITY (1, 1) NOT NULL,
+    [Id]   INT          IDENTITY (1, 1) NOT NULL,
     [name] VARCHAR (50) NULL,
     [pass] VARCHAR (50) NULL,
     [role] VARCHAR (50) NULL,
-    PRIMARY KEY CLUSTERED ([id] ASC)
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
