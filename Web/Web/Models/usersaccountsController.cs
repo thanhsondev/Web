@@ -10,42 +10,46 @@ using Web.Data;
 
 namespace Web.Models
 {
-    public class useraccountsController : Controller
+    public class usersaccountsController : Controller
     {
         private readonly WebContext _context;
 
-        public useraccountsController(WebContext context)
+        public usersaccountsController(WebContext context)
         {
             _context = context;
         }
 
-        // GET: useraccounts
+        // GET: usersaccounts
         public async Task<IActionResult> Index()
         {
-              return _context.useraccounts != null ? 
-                          View(await _context.useraccounts.ToListAsync()) :
-                          Problem("Entity set 'WebContext.useraccounts'  is null.");
+              return _context.usersaccounts != null ? 
+                          View(await _context.usersaccounts.ToListAsync()) :
+                          Problem("Entity set 'WebContext.usersaccounts'  is null.");
         }
 
-        // GET: useraccounts/Details/5
+        // GET: usersaccounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.useraccounts == null)
+            if (id == null || _context.usersaccounts == null)
             {
                 return NotFound();
             }
 
-            var useraccounts = await _context.useraccounts
+            var usersaccounts = await _context.usersaccounts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (useraccounts == null)
+            if (usersaccounts == null)
             {
                 return NotFound();
             }
 
-            return View(useraccounts);
+            return View(usersaccounts);
         }
 
-    
+        // GET: usersaccounts/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
         public IActionResult login()
         {
             return View();
@@ -53,7 +57,7 @@ namespace Web.Models
 
         [HttpPost, ActionName("login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string na, string pa)
+        public async Task<IActionResult> login(string na, string pa)
         {
             SqlConnection conn1 = new SqlConnection("Data Source=ITK6;Initial Catalog=appdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             string sql;
@@ -66,7 +70,6 @@ namespace Web.Models
             {
                 string role = (string)reader["role"];
                 string id = Convert.ToString((int)reader["Id"]);
-
                 HttpContext.Session.SetString("Name", na);
                 HttpContext.Session.SetString("Role", role);
                 HttpContext.Session.SetString("userid", id);
@@ -86,93 +89,88 @@ namespace Web.Models
             }
         }
 
-        // GET: useraccounts/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: useraccounts/Create
+        // POST: usersaccounts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,name,pass,email")] useraccounts useraccounts)
+        public async Task<IActionResult> Create([Bind("Id,name,pass,email")] usersaccounts usersaccounts)
         {
-            useraccounts.role = "customer";
-                _context.Add(useraccounts);
+            usersaccounts.role = "customer";
+
+                _context.Add(usersaccounts);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(login));
-            
-          
-        }
-
-        // GET: useraccounts/Edit/5
-        public async Task<IActionResult> Edit()
-        {
-
-            int id = Convert.ToInt32(HttpContext.Session.GetString("userid"));
-
-            var useraccounts = await _context.useraccounts.FindAsync(id);
-         
-            return View(useraccounts);
-        }
-
-        // POST: useraccounts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,name,pass,role,email")] useraccounts useraccounts)
-        {
-          
-                    _context.Update(useraccounts);
-                    await _context.SaveChangesAsync();
-          
-             return RedirectToAction(nameof(login));
            
         }
 
-        // GET: useraccounts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: usersaccounts/Edit/5
+        public async Task<IActionResult> Edit()
         {
-            if (id == null || _context.useraccounts == null)
-            {
-                return NotFound();
-            }
+            int id = Convert.ToInt32(HttpContext.Session.GetString("userid"));
 
-            var useraccounts = await _context.useraccounts
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (useraccounts == null)
-            {
-                return NotFound();
-            }
 
-            return View(useraccounts);
+            var usersaccounts = await _context.usersaccounts.FindAsync(id);
+           
+            return View(usersaccounts);
         }
 
-        // POST: useraccounts/Delete/5
+        // POST: usersaccounts/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,name,pass,role,email")] usersaccounts usersaccounts)
+        {
+
+            _context.Update(usersaccounts);
+                    await _context.SaveChangesAsync();
+             
+                return RedirectToAction(nameof(Index));
+            
+        }
+
+        // GET: usersaccounts/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.usersaccounts == null)
+            {
+                return NotFound();
+            }
+
+            var usersaccounts = await _context.usersaccounts
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (usersaccounts == null)
+            {
+                return NotFound();
+            }
+
+            return View(usersaccounts);
+        }
+
+        // POST: usersaccounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.useraccounts == null)
+            if (_context.usersaccounts == null)
             {
-                return Problem("Entity set 'WebContext.useraccounts'  is null.");
+                return Problem("Entity set 'WebContext.usersaccounts'  is null.");
             }
-            var useraccounts = await _context.useraccounts.FindAsync(id);
-            if (useraccounts != null)
+            var usersaccounts = await _context.usersaccounts.FindAsync(id);
+            if (usersaccounts != null)
             {
-                _context.useraccounts.Remove(useraccounts);
+                _context.usersaccounts.Remove(usersaccounts);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool useraccountsExists(int id)
+        private bool usersaccountsExists(int id)
         {
-          return (_context.useraccounts?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.usersaccounts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
