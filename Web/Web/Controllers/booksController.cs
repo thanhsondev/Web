@@ -56,8 +56,9 @@ namespace Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( IFormFile file, [Bind("Id,title,info,bookquantity,price,cataid,author,imgfile")] book book)
+        public async Task<IActionResult> Create( IFormFile file, [Bind("Id,title,info,bookquantity,price,cataid,author")] book book)
         {
+
 
             if (file != null)
             {
@@ -69,6 +70,7 @@ namespace Web.Controllers
 
                 book.imgfile = filename;
             }
+
 
             _context.Add(book);
                 await _context.SaveChangesAsync();

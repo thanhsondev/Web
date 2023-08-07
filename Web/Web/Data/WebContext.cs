@@ -15,5 +15,7 @@ namespace Web.Data
         }
 
         public DbSet<Web.Models.book> book { get; set; } = default!;
+
+        public DbSet<Web.Models.useraccounts> useraccounts { get; set; } = default!;
     }
 }
