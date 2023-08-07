@@ -56,15 +56,24 @@ namespace Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,title,info,bookquantity,price,cataid,author,imgfile")] book book)
+        public async Task<IActionResult> Create( IFormFile file, [Bind("Id,title,info,bookquantity,price,cataid,author,imgfile")] book book)
         {
-            if (ModelState.IsValid)
+
+            if (file != null)
             {
-                _context.Add(book);
+                string filename = file.FileName;
+                //  string  ext = Path.GetExtension(file.FileName);
+                string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images"));
+                using (var filestream = new FileStream(Path.Combine(path, filename), FileMode.Create))
+                { await file.CopyToAsync(filestream); }
+
+                book.imgfile = filename;
+            }
+
+            _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+           
         }
 
         // GET: books/Edit/5
@@ -88,34 +97,24 @@ namespace Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,title,info,bookquantity,price,cataid,author,imgfile")] book book)
+        public async Task<IActionResult> Edit(IFormFile file, int id, [Bind("Id,title,info,bookquantity,price,cataid,author,imgfile")] book book)
         {
-            if (id != book.Id)
+            if (file != null)
             {
-                return NotFound();
+                string filename = file.FileName;
+                //  string  ext = Path.GetExtension(file.FileName);
+                string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images"));
+                using (var filestream = new FileStream(Path.Combine(path, filename), FileMode.Create))
+                { await file.CopyToAsync(filestream); }
+
+                book.imgfile = filename;
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(book);
+            _context.Update(book);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!bookExists(book.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+               
                 return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+            
         }
 
         // GET: books/Delete/5
