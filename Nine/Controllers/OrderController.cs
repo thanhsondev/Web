@@ -74,7 +74,7 @@ namespace Nine.Controllers
             var order = _context.Orders.Find(id);
             if (order.OrderStatusId != null)
             {
-                order.OrderStatusId = 3;
+                order.OrderStatusId = 6;
             }
             _context.SaveChanges();
             return RedirectToAction("UserOrders");

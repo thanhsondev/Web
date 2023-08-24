@@ -176,12 +176,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GreenWich/1670/Web/Nine/Views/Admin/ManageGenre.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlR2VucmUuY3NodG1s
+[D:/GreenWich/1670/Web/Nine/Views/Admin/ChangeOwner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2hhbmdlT3duZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GreenWich/1670/Web/Nine/Views/Admin/RegisterOwner.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVnaXN0ZXJPd25lci5jc2h0bWw=
+[D:/GreenWich/1670/Web/Nine/Views/Admin/ChangePasswordOwner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2hhbmdlUGFzc3dvcmRPd25lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GreenWich/1670/Web/Nine/Views/Admin/ChangePasswordUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2hhbmdlUGFzc3dvcmRVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GreenWich/1670/Web/Nine/Views/Admin/ChangeUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ2hhbmdlVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GreenWich/1670/Web/Nine/Views/Admin/ManageGenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlR2VucmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GreenWich/1670/Web/Nine/Views/Admin/ShowOwner.cshtml]

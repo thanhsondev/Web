@@ -23,8 +23,9 @@
 			</th>
 
 			<th>
-				<h4><a asp-action="RegisterOwner" style="Text-decoration: none;" class="btn btn-outline-success"><i class="fa-solid fa-ghost fa-xl" style="margin-right: 2px"></i> Add</a></h4>
+				Address
 			</th>
+	
 		</tr>
 	</thead>
 	<tbody>
@@ -32,15 +33,18 @@
 		{
 			<tr>
 				<td>@user.Id</td>
-				<td>@user.UserName</td>
+				<td>@user.FullName</td>
 				<td>@user.Email</td>
+				<td>@user.Address</td>
 
 
 
-				<td>
-					<a class="btn btn-outline-info mdi mdi-pencil" asp-controller="Admin" asp-action="ChangeOwner" asp-route-id="@user.Id"><i class="fa-solid fa-bolt fa-xl"></i></a>
-					<a class="btn btn-outline-danger mdi mdi-pencil" asp-controller="Admin" asp-action="DeleteOwner" asp-route-id="@user.Id"><i class="fa-solid fa-trash fa-xl"></i></a>
-				</td>
+                <td>
+                    <a class="btn btn-outline-info mdi mdi-pencil" asp-controller="Admin" asp-action="ChangeOwner" asp-route-id="@user.Id"><i class="fa-solid fa-bolt fa-xl"></i></a>
+					<a class="btn btn-outline-warning mdi mdi-pencil" asp-controller="Admin" asp-action="ChangePasswordOwner" asp-route-id="@user.Id"><i class="fa-solid fa-key fa-xl"></i> Change Password</a>
+
+                    <a class="btn btn-outline-danger mdi mdi-pencil" asp-controller="Admin" asp-action="DeleteOwner" asp-route-id="@user.Id"><i class="fa-solid fa-trash fa-xl"></i></a>
+                </td>
 			</tr>
 		}
 	</tbody>

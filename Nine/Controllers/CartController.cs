@@ -138,7 +138,7 @@ namespace Nine.Controllers
             {
                 UserId = userId,
                 CreateDate = DateTime.UtcNow,
-                OrderStatusId = 1 //
+                OrderStatusId = 6 //
             };
             _context.Orders.Add(order);
             _context.SaveChanges();

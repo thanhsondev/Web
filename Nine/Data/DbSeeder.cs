@@ -42,7 +42,7 @@ namespace Nine.Data
             };
 
             var ownerInDb = await userManager.FindByEmailAsync(owner.Email);
-            if (userInDb == null)
+            if (ownerInDb == null)
             {
                 await userManager.CreateAsync(owner, "Owner@123");
                 await userManager.AddToRoleAsync(owner, Roles.Owner.ToString());
@@ -58,7 +58,7 @@ namespace Nine.Data
             };
 
             var adminInDb = await userManager.FindByEmailAsync(admin.Email);
-            if (userInDb == null)
+            if (adminInDb == null)
             {
                 await userManager.CreateAsync(admin, "Admin@123");
                 await userManager.AddToRoleAsync(admin, Roles.Admin.ToString());

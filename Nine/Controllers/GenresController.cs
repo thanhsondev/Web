@@ -41,9 +41,19 @@ namespace Nine.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(genre);
+                bool isGenreExists = _context.Genres.Any(g => g.GenreName == genre.GenreName);
+                if (isGenreExists)
+                {
+                    // Nếu thể loại đã tồn tại, thông báo lỗi
+                    ModelState.AddModelError("GenreName", "This category already exists.");
+                    return View(genre);
+                }
+                else
+                {
+                    _context.Add(genre);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+                }
             }
             return View(genre);
         }

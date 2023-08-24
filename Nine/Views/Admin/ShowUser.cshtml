@@ -44,10 +44,14 @@
 
 
 
-				<td>
-					<a class="btn btn-outline-info mdi mdi-pencil" asp-controller="Admin" asp-action="ChangeUser" asp-route-id="@user.Id"><i class="fa-solid fa-bolt fa-xl"></i></a>
-					<a class="btn btn-outline-danger mdi mdi-pencil" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id"><i class="fa-solid fa-trash fa-xl"></i></a>
-				</td>
+                <td>
+                    <a class="btn btn-outline-info mdi mdi-pencil" asp-controller="Admin" asp-action="ChangeUser" asp-route-id="@user.Id"><i class="fa-solid fa-bolt fa-xl"></i></a>
+					<a class="btn btn-outline-warning mdi mdi-pencil" asp-controller="Admin" asp-action="ChangePasswordUser" asp-route-id="@user.Id"><i class="fa-solid fa-key fa-xl"></i> Change Password</a>
+
+					<a class="btn btn-outline-warning mdi mdi-pencil" asp-controller="Admin" asp-action="ChangeUserRoleToOwner" asp-route-id="@user.Id"><i class="fa-solid fa-key fa-xl"></i> Change to Owner</a>
+
+                    <a class="btn btn-outline-danger mdi mdi-pencil" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id"><i class="fa-solid fa-trash fa-xl"></i></a>
+                </td>
 			</tr>
 		}
 	</tbody>
